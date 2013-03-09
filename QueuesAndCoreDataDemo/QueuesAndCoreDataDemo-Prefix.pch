@@ -1,0 +1,25 @@
+//
+// Prefix header for all source files of the 'QueuesAndCoreDataDemo' target in the 'QueuesAndCoreDataDemo' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+// N.B. I usually have a seperate constants file for all constants, compiler-defines and macros
+// but this place is also good to use in a pinch.
+
+static NSString *const kXkcdBaseURL     = @"http://xkcd.com/";
+// The base URL
+static const NSUInteger kXkcdMaxIndex   = 1183;
+// Don't time travel back to last week - this is the number of the most recent comic at time of writing.
+// Time travel would break this app.
+#define dispatchDoRunloop() @autoreleasepool{ [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:3]]; }
+// This is a piece of magic that I might talk about another day, but it's not important for your current task.
