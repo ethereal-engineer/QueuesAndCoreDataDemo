@@ -53,6 +53,10 @@ static const QCDCoreData *_gQCDCoreData = nil;
                                                       if (note.object == _managedObjectContext) {
                                                           return;
                                                       }
+                                                      NSManagedObjectContext *noteContext = note.object;
+                                                      if (noteContext.persistentStoreCoordinator != coordinator) {
+                                                          return;
+                                                      }
                                                       [_managedObjectContext mergeChangesFromContextDidSaveNotification:note];
                                                   }];
     
