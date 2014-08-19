@@ -83,6 +83,13 @@ static const QCDCoreData *_gQCDCoreData = nil;
         return _persistentStoreCoordinator;
     }
     
+    if (![NSThread currentThread].isMainThread) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            (void)[self persistentStoreCoordinator];
+        });
+        return _persistentStoreCoordinator;
+    }
+    
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"qcd.sqlite"];
     
     NSError *error = nil;
